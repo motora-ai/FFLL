@@ -5,7 +5,7 @@
 // Purpose:	Implementation of the RuleArray class.  This class represents
 //			the rules associated with a set of variables.
 //
-// Copyright © 1999-2001 Louder Than A Bomb! Software
+// Copyright ï¿½ 1999-2001 Louder Than A Bomb! Software
 //
 // This file is part of the FFLL (Free Fuzzy Logic Library) project (http://ffll.sourceforge.net)
 // It is released under the BSD license, see http://ffll.sourceforge.net/license.txt for the full text.
@@ -119,7 +119,7 @@ int RuleArray::alloc(int size)
 	if (rules == NULL)
 		{
 		assert(rules != NULL);
-		set_msg_text(ERR_ALLOC_MEM);
+		set_msg_text_int(ERR_ALLOC_MEM);
 		return -1;
 		}
 

@@ -4,7 +4,7 @@
 //
 // Purpose:	This file contains  code for the FuzzyOutSet class
 //
-// Copyright © 1999-2001 Louder Than A Bomb! Software
+// Copyright ï¿½ 1999-2001 Louder Than A Bomb! Software
 //
 // This file is part of the FFLL (Free Fuzzy Logic Library) project (http://ffll.sourceforge.net)
 // It is released under the BSD license, see http://ffll.sourceforge.net/license.txt for the full text.
@@ -135,7 +135,7 @@ int FuzzyOutSet::set_defuzz_method(int type)
 			break;
 
 		default:
-			set_msg_text(ERR_INVALID_DEFUZZ_MTHD);
+			set_msg_text_int(ERR_INVALID_DEFUZZ_MTHD);
 			return -1;
 
 		} // end switch on type
@@ -145,7 +145,7 @@ int FuzzyOutSet::set_defuzz_method(int type)
 		// problem allocating memory
 		// NOTE: in MSVC new returns NULL if there's not enough memory. If this is ported
 		// to a diff platform new may throw a std::bad_alloc exception it it can't alloc the memory.
- 		set_msg_text(ERR_ALLOC_MEM);
+ 		set_msg_text_int(ERR_ALLOC_MEM);
 		assert(defuzz_obj != NULL);
 		return -1;
 		} // end if error allocating memory

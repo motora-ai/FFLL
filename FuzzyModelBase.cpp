@@ -234,7 +234,7 @@ int FuzzyModelBase::add_output_variable(const wchar_t* _name, RealType start_x, 
 	// return error if we already have an output variable
 	if (output_var)
 		{
-		set_msg_text(ERR_OUT_VAR_EXISTS);
+		set_msg_text_int(ERR_OUT_VAR_EXISTS);
 		return -1;
 		}
   
@@ -292,7 +292,7 @@ int FuzzyModelBase::delete_variable(int _var_idx )
 	// don't allow removal of output variable
 	if (var->is_output())
 		{
-		set_msg_text(ERR_CANT_DEL_OUTPUT_VAR);
+		set_msg_text_int(ERR_CANT_DEL_OUTPUT_VAR);
 		return -1;
 		}
 
@@ -310,7 +310,7 @@ int FuzzyModelBase::delete_variable(int _var_idx )
 		// problem allocating memory
 		// NOTE: in MSVC new returns NULL if there's not enough memory. If this is ported
 		// to a diff platform new may throw a std::bad_alloc exception it it can't alloc the memory.
- 		set_msg_text(ERR_ALLOC_MEM);
+ 		set_msg_text_int(ERR_ALLOC_MEM);
 		assert(tmp_var != NULL);
 		return -1;
 
@@ -700,7 +700,7 @@ int FuzzyModelBase::delete_set(int _var_idx, int _set_idx)
 
 	if (!new_mem)
 		{
- 		set_msg_text(ERR_ALLOC_MEM);
+ 		set_msg_text_int(ERR_ALLOC_MEM);
  		assert(new_mem != NULL);
 		return -1;
 		} // end if error allocating memory
@@ -789,7 +789,7 @@ bool FuzzyModelBase::is_var_id_unique(const wchar_t* _id, int _var_idx) const
 		if (wcscmp(var->get_id(), _id) == 0)
 			{
 			// NOT unique
-			set_msg_text( load_string(ERR_VAR_NON_UNIQUE_ID));
+			set_msg_text_wchar(load_string(ERR_VAR_NON_UNIQUE_ID));
 			return false;
 			}
 
@@ -804,7 +804,7 @@ bool FuzzyModelBase::is_var_id_unique(const wchar_t* _id, int _var_idx) const
 		if (wcscmp(var->get_id(), _id) == 0)
 			{
 			// NOT unique
-			set_msg_text(ERR_VAR_NON_UNIQUE_ID);
+			set_msg_text_int(ERR_VAR_NON_UNIQUE_ID);
 			return false;
 			}
 
@@ -1228,7 +1228,7 @@ int FuzzyModelBase::save_to_fcl_file(const char* file_name)
 
 	if (!(file_contents.is_open()))
 		{
-		set_msg_text(ERR_OPENING_FILE); // could be a little more robuts here
+		set_msg_text_int(ERR_OPENING_FILE); // could be a little more robuts here
 		return -1;
 		}
 
@@ -1534,7 +1534,7 @@ int FuzzyModelBase::load_from_fcl_file(const char* file_name)
 
  	if (!(file_contents.is_open()))
 		{
-		set_msg_text(ERR_OPENING_FILE); // could be a little more robuts here
+		set_msg_text_int(ERR_OPENING_FILE); // could be a little more robuts here
 		return -1;
 		}
 
@@ -1552,7 +1552,7 @@ int FuzzyModelBase::load_from_fcl_file(const char* file_name)
  	  	if (input_var_arr[i]->load_sets_from_fcl_file(file_contents))
 			{
 			// get the message text and set it for the model
-			set_msg_text(input_var_arr[i]->get_msg_text());
+			set_msg_text_wchar(input_var_arr[i]->get_msg_text());
 			return -1;
 			}
 		} // end loop through input vars
@@ -1562,7 +1562,7 @@ int FuzzyModelBase::load_from_fcl_file(const char* file_name)
 		if (output_var->load_sets_from_fcl_file(file_contents))
 			{
 			// get the message text and set it for the model
-			set_msg_text(output_var->get_msg_text());
+			set_msg_text_wchar(output_var->get_msg_text());
 			return -1;
 			}
 		} // end if output var
@@ -1630,7 +1630,7 @@ int FuzzyModelBase::load_vars_from_fcl_file(std::ifstream& file_contents, bool o
 		// if token is empty we reached EOF
 		if (file_contents.eof())
 			{
-			set_msg_text(ERR_EOF_READING_VARS);
+			set_msg_text_int(ERR_EOF_READING_VARS);
  			return -1; 
 			}
 		}while (strcmp(token.c_str(), start_token) != 0);
@@ -1709,7 +1709,7 @@ int FuzzyModelBase::load_vars_from_fcl_file(std::ifstream& file_contents, bool o
 				if (fabs(start_val) == HUGE_VAL)
 					{
 					// error converting...
-					set_msg_text(ERR_VAR_MIN_VALUE);
+					set_msg_text_int(ERR_VAR_MIN_VALUE);
  					return -1; 
 					}
 
@@ -1731,7 +1731,7 @@ int FuzzyModelBase::load_vars_from_fcl_file(std::ifstream& file_contents, bool o
 				if (fabs(end_val) == HUGE_VAL)
 					{
 					// error converting...
-					set_msg_text(ERR_VAR_MAX_VALUE);
+					set_msg_text_int(ERR_VAR_MAX_VALUE);
  					return -1; 
 					}
 
@@ -1898,7 +1898,7 @@ int FuzzyModelBase::load_rules_from_fcl_file(std::ifstream& file_contents)
 		}
 	else
 		{
-		set_msg_text(ERR_INVALID_FILE_FORMAT);
+		set_msg_text_int(ERR_INVALID_FILE_FORMAT);
 		return -1;
 		}
 
@@ -1914,7 +1914,7 @@ int FuzzyModelBase::load_rules_from_fcl_file(std::ifstream& file_contents)
 	// sanity check
 	if (strncmp(accum, "ACCU", strlen("ACCU")) != 0)
 		{
-		set_msg_text(ERR_INVALID_FILE_FORMAT);
+		set_msg_text_int(ERR_INVALID_FILE_FORMAT);
 		return -1;
 		}
 
@@ -1932,7 +1932,7 @@ int FuzzyModelBase::load_rules_from_fcl_file(std::ifstream& file_contents)
 		}
 	else
 		{
-		set_msg_text(ERR_INVALID_FILE_FORMAT);
+		set_msg_text_int(ERR_INVALID_FILE_FORMAT);
 		return -1;
 		}
 
@@ -1949,7 +1949,7 @@ int FuzzyModelBase::load_rules_from_fcl_file(std::ifstream& file_contents)
 		{
 		if (file_contents.eof())
 			{
-			set_msg_text(ERR_EOF_READING_RULES);
+			set_msg_text_int(ERR_EOF_READING_RULES);
  			return -1;
 			}
 
@@ -2496,7 +2496,7 @@ int FuzzyModelBase::set_inference_method(int method)
 			break;
 
 		default:
-			set_msg_text(ERR_INVALID_INFERENCE_MTHD);
+			set_msg_text_int(ERR_INVALID_INFERENCE_MTHD);
 			return -1;	// invalid method  
 	
 		} // end switch on method

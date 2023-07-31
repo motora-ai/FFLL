@@ -3,7 +3,7 @@
 //
 // Purpose:	Set object for Center of Gravity Defuzzification method
 //
-// Copyright © 2001 Louder Than A Bomb! Software
+// Copyright ï¿½ 2001 Louder Than A Bomb! Software
 //
 // This file is part of the FFLL (Free Fuzzy Logic Library) project (http://ffll.sourceforge.net)
 // It is released under the BSD license, see http://ffll.sourceforge.net/license.txt for the full text.
@@ -109,7 +109,7 @@ int COGDefuzzSetObj::init(int array_max)
 
 	if (values == NULL)
 		{
- 		set_msg_text(ERR_ALLOC_MEM);
+ 		set_msg_text_int(ERR_ALLOC_MEM);
 		assert(values != NULL);
 		return -1;
 		} // end if error allocating memory
