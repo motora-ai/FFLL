@@ -4,7 +4,7 @@
 //
 // Purpose:	This file contains  code for the FuzzyOutVariable class
 //
-// Copyright © 1999-2001 Louder Than A Bomb! Software
+// Copyright ï¿½ 1999-2001 Louder Than A Bomb! Software
 //
 // This file is part of the FFLL (Free Fuzzy Logic Library) project (http://ffll.sourceforge.net)
 // It is released under the BSD license, see http://ffll.sourceforge.net/license.txt for the full text.
@@ -142,7 +142,7 @@ int FuzzyOutVariable::set_defuzz_method(int type)
 			break;
 
 		default:
-			set_msg_text(ERR_INVALID_DEFUZZ_MTHD);
+			set_msg_text_int(ERR_INVALID_DEFUZZ_MTHD);
 			return -1;
 
 		} // end switch on type
@@ -152,7 +152,7 @@ int FuzzyOutVariable::set_defuzz_method(int type)
 		// problem allocating memory
 		// NOTE: in MSVC new returns NULL if there's not enough memory. If this is ported
 		// to a diff platform new may throw a std::bad_alloc exception it it can't alloc the memory.
- 		set_msg_text(ERR_ALLOC_MEM);
+ 		set_msg_text_int(ERR_ALLOC_MEM);
 		assert(defuzz_obj != NULL);
 		return -1;
 		} // end if error allocating memory
@@ -210,7 +210,7 @@ int FuzzyOutVariable::set_composition_method(int method)
 
 		default:
 			// invalid method  
-			set_msg_text(ERR_INVALID_COMP_MTHD);
+			set_msg_text_int(ERR_INVALID_COMP_MTHD);
 			return -1;	
 
 		} // end switch on method
@@ -320,7 +320,7 @@ int FuzzyOutVariable::init(const wchar_t* _id, bool create_unique_id /* = true *
 			counter++;
  
 			// clear message text (should say "var not unique" right now)
-			set_msg_text(NULL);
+			set_msg_text_wchar(NULL);
 			
 			} // end while !unique id
 

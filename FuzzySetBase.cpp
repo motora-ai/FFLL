@@ -3,7 +3,7 @@
 //
 // Purpose:	This file contains code for the FuzzySetBase class
 //
-// Copyright © 1999-2001 Louder Than A Bomb! Software
+// Copyright ï¿½ 1999-2001 Louder Than A Bomb! Software
 //
 // This file is part of the FFLL (Free Fuzzy Logic Library) project (http://ffll.sourceforge.net)
 // It is released under the BSD license, see http://ffll.sourceforge.net/license.txt for the full text.
@@ -258,7 +258,7 @@ int FuzzySetBase::new_member_func(int type)
 		// problem allocating memory
 		// NOTE: in MSVC new returns NULL if there's not enough memory. If this is ported
 		// to a diff platform new may throw a std::bad_alloc exception it it can't alloc the memory.
- 		set_msg_text(ERR_ALLOC_MEM);
+ 		set_msg_text_int(ERR_ALLOC_MEM);
 		assert(member_func != NULL);
 		return -1;
 		} // end if error allocating memory
@@ -308,7 +308,7 @@ int FuzzySetBase::set_id(const wchar_t* _id, bool allow_dup /* = false*/)
 		if (!(par->is_set_id_unique(_id, index)))
 			{
 			// read the error from the parent and set it for 'this'
-			set_msg_text(par->get_msg_text());
+			set_msg_text_wchar(par->get_msg_text());
  			return -1;  
 			}		
 		} // if don't allow duplicates
@@ -445,7 +445,7 @@ bool FuzzySetBase::is_set_id_unique() const
 	if (ret_val)
 		{
 		// read the error from the parent and set it for 'this'
-		set_msg_text(get_parent()->get_msg_text());
+		set_msg_text_wchar(get_parent()->get_msg_text());
 		}
 
 	return (ret_val) ? true : false;

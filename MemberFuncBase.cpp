@@ -3,7 +3,7 @@
 //
 // Purpose:	This is the base class for the membership functions
 //
-// Copyright © 1999-2001 Louder Than A Bomb! Software
+// Copyright ï¿½ 1999-2001 Louder Than A Bomb! Software
 //
 // This file is part of the FFLL (Free Fuzzy Logic Library) project (http://ffll.sourceforge.net)
 // It is released under the BSD license, see http://ffll.sourceforge.net/license.txt for the full text.
@@ -339,7 +339,7 @@ int MemberFuncBase::alloc_values_array()
 
 	if (values == NULL)
 		{
-		set_msg_text(ERR_ALLOC_MEM);
+		set_msg_text_int(ERR_ALLOC_MEM);
 		return -1;
 		}
 
@@ -379,7 +379,7 @@ int MemberFuncBase::alloc_nodes(int node_count)
  
 	if (nodes == NULL)
 		{
-		set_msg_text(ERR_ALLOC_MEM);
+		set_msg_text_int(ERR_ALLOC_MEM);
 		return -1;
 		}
 

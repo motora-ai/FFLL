@@ -3,7 +3,7 @@
 //
 // Purpose:	Base class for all FFLL files.
 //
-// Copyright © 1998-2001 Louder Than A Bomb! Software
+// Copyright ï¿½ 1998-2001 Louder Than A Bomb! Software
 //
 // This file is part of the FFLL (Free Fuzzy Logic Library) project (http://ffll.sourceforge.net)
 // It is released under the BSD license, see http://ffll.sourceforge.net/license.txt for the full text.
@@ -236,7 +236,7 @@ const wchar_t* FFLLBase::get_msg_text() const
 // ------	----		------------
 //
 //
-void FFLLBase::set_msg_text(int msg_id) const
+void FFLLBase::set_msg_text_int(int msg_id) const
 {
  	// vars are mutable so we can modify them event though this func is 'const'
 	error_read = false;
@@ -268,9 +268,9 @@ void FFLLBase::set_msg_text(int msg_id) const
 //
 //	
 
-void FFLLBase::set_msg_text(const std::wstring _text) const
+void FFLLBase::set_msg_text_wstr(const std::wstring _text) const
 {
-	set_msg_text(_text.c_str());
+	set_msg_text_wchar(_text.c_str());
 
 }; // end FFLLBase::set_msg_text()
 
@@ -297,7 +297,7 @@ void FFLLBase::set_msg_text(const std::wstring _text) const
 //
 //	
 
-void FFLLBase::set_msg_text(const wchar_t* _text /* = NULL */) const
+void FFLLBase::set_msg_text_wchar(const wchar_t* _text /* = NULL */) const
 {
 	// NOTE: Class vars are mutable so we can modify them event though this func is 'const'
 	

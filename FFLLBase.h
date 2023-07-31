@@ -3,7 +3,7 @@
 //
 // Purpose:		This file contains the common classes/structs/etc for FFLL
 //
-// Copyright © 2000-2001 Louder Than A Bomb! Software
+// Copyright ï¿½ 2000-2001 Louder Than A Bomb! Software
 //
 // This file is part of the FFLL (Free Fuzzy Logic Library) project (http://ffll.sourceforge.net)
 // It is released under the BSD license, see http://ffll.sourceforge.net/license.txt for the full text.
@@ -63,8 +63,8 @@
 // require the program using the library to be re linked.  Without inlines
 // you can just drop in the new dll and everything will work (assuming you
 // only changed the function's implementation and not it's declaration)
-// Note that we avoid inlining virtual functions cuz "it’s best not to use 
-// inline virtual functions, since they’re almost never expanded anyway." 
+// Note that we avoid inlining virtual functions cuz "itï¿½s best not to use 
+// inline virtual functions, since theyï¿½re almost never expanded anyway." 
 // according to http://msdn.microsoft.com/msdnmag/issues/0600/c/c0600.asp
 //
 // NOTE: That inlining for FFLL doesn't work when using Microsoft MSVC
@@ -80,6 +80,8 @@
 #include <assert.h>
 #include <float.h> // needed for FLT_MIN
 #include <fstream>
+#include <memory.h>
+#include <wchar.h>
 
 // added #define for more compatiblity (Michael Z 4/03)...
 #if defined (__MSVCRT__) || defined(_WINDOWS)
@@ -217,9 +219,9 @@ class  FFLLBase
  
  		const wchar_t* get_msg_text() const;
  
-		void set_msg_text(int msg_id) const;
-		void set_msg_text(const std::wstring _text) const;
-		void set_msg_text(const wchar_t* _text = NULL) const;
+		void set_msg_text_int(int msg_id) const;
+		void set_msg_text_wstr(const std::wstring _text) const;
+		void set_msg_text_wchar(const wchar_t* _text = NULL) const;
 
 	protected:
 

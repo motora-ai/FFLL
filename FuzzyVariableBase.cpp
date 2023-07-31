@@ -3,7 +3,7 @@
 //
 // Purpose:	This file contains ancestor code for the FuzzyVariable classes
 //
-// Copyright © 1999-2001 Louder Than A Bomb! Software
+// Copyright ï¿½ 1999-2001 Louder Than A Bomb! Software
 //
 // This file is part of the FFLL (Free Fuzzy Logic Library) project (http://ffll.sourceforge.net)
 // It is released under the BSD license, see http://ffll.sourceforge.net/license.txt for the full text.
@@ -199,9 +199,9 @@ bool FuzzyVariableBase::is_set_id_unique(const wchar_t* set_id, int set_idx) con
 		assert(set != NULL);
  
 		// case insensitive comparison
-		if (wcsicmp(set->get_id(), set_id) == 0)
+		if (wcsncmp(set->get_id(), set_id, wcslen(set_id)) == 0)
 			{
-			set_msg_text(ERR_SET_NON_UNIQUE_ID);  
+			set_msg_text_int(ERR_SET_NON_UNIQUE_ID);  
 			return false;
 			}
 
@@ -243,7 +243,7 @@ int FuzzyVariableBase::set_left_x(RealType value)
 	// make sure value != right_x
 	if (value == right_x)
 		{
-		set_msg_text(ERR_SAME_LEFT_RIGHT_VALS);
+		set_msg_text_int(ERR_SAME_LEFT_RIGHT_VALS);
 		return -1;
 		}
 
@@ -285,7 +285,7 @@ int FuzzyVariableBase::set_right_x(RealType value)
 	// make sure avlue != left_x
 	if (value == left_x)
 		{
-		set_msg_text(ERR_SAME_LEFT_RIGHT_VALS);
+		set_msg_text_int(ERR_SAME_LEFT_RIGHT_VALS);
 		return -1;
 		}
 
@@ -527,7 +527,7 @@ int FuzzyVariableBase::set_id(const wchar_t* _id, int set_idx /* = -1 */)
 		if (ret_val)
 			{
 			// read the error from the set and set it for 'this'
-			set_msg_text(sets[set_idx]->get_msg_text());
+			set_msg_text_wchar(sets[set_idx]->get_msg_text());
  			return ret_val;  
 			}
 
@@ -540,7 +540,7 @@ int FuzzyVariableBase::set_id(const wchar_t* _id, int set_idx /* = -1 */)
   	if (par->is_var_id_unique(_id, get_index()) == false)
 		{
 		// read the error from the parent and set it for 'this'
-		set_msg_text(par->get_msg_text());
+		set_msg_text_wchar(par->get_msg_text());
  		return -1;  
 		}
  
@@ -610,7 +610,7 @@ int FuzzyVariableBase::add_set(const FuzzySetBase* _new_set)
 		set_name += L" " + tmp_name;
 
 		// clear the message text...
-		set_msg_text();
+		set_msg_text_wchar();
 
 		} // end wile set is NOT unique
    
@@ -886,7 +886,7 @@ int FuzzyVariableBase::load_sets_from_fcl_file(std::ifstream& file_contents)
 			// check for EOF
 			if (file_contents.eof())
 				{
-				set_msg_text(ERR_EOF_READING_SETS);
+				set_msg_text_int(ERR_EOF_READING_SETS);
 				delete[] aid;
  				return -1; 
 				}
@@ -931,7 +931,7 @@ int FuzzyVariableBase::load_sets_from_fcl_file(std::ifstream& file_contents)
 		// check for EOF
 		if (file_contents.eof())
 			{
-			set_msg_text(ERR_EOF_READING_SETS);
+			set_msg_text_int(ERR_EOF_READING_SETS);
  			return -1; 
 			}
 
@@ -945,9 +945,9 @@ int FuzzyVariableBase::load_sets_from_fcl_file(std::ifstream& file_contents)
 			break;	// we're done
 
 		// validate this is the "term" keyword
-		if (stricmp(token, "term") != 0)
+		if (strncmp(token, "term", 4) != 0)
 			{
-			set_msg_text(ERR_INVALID_FILE_FORMAT); // could be a bit more "robuts" in our error reporting!
+			set_msg_text_int(ERR_INVALID_FILE_FORMAT); // could be a bit more "robuts" in our error reporting!
 			return -1;
 			}
 		
@@ -959,7 +959,7 @@ int FuzzyVariableBase::load_sets_from_fcl_file(std::ifstream& file_contents)
 		if (token == NULL)
 			{
 			// ERROR - invalid format
-			set_msg_text(ERR_INVALID_FILE_FORMAT); // could be a bit more "robuts" in our error reporting!
+			set_msg_text_int(ERR_INVALID_FILE_FORMAT); // could be a bit more "robuts" in our error reporting!
 			return -1;
 			}
 
@@ -995,7 +995,7 @@ int FuzzyVariableBase::load_sets_from_fcl_file(std::ifstream& file_contents)
 					if (num_of_points != 0)
 						{
 						// ERROR - invalid format
-						set_msg_text(ERR_INVALID_FILE_FORMAT); // could be a bit more "robuts" in our error reporting!
+						set_msg_text_int(ERR_INVALID_FILE_FORMAT); // could be a bit more "robuts" in our error reporting!
 						return -1;
 						}
 
@@ -1015,7 +1015,7 @@ int FuzzyVariableBase::load_sets_from_fcl_file(std::ifstream& file_contents)
 				if (token == NULL)
 					{
 					// ERROR - invalid format
-					set_msg_text(ERR_INVALID_FILE_FORMAT); // could be a bit more "robuts" in our error reporting!
+					set_msg_text_int(ERR_INVALID_FILE_FORMAT); // could be a bit more "robuts" in our error reporting!
 					return -1;
 					}
 
@@ -1309,7 +1309,7 @@ int FuzzyVariableBase::init(const wchar_t* _id, bool create_unique_id /* = true 
 			counter++;
  
 			// clear message text (should say "var not unique" right now)
-			set_msg_text();
+			set_msg_text_wchar();
 			
 			} // end while !unique id
 
